@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HealthWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_Appointment">
+    <Key>
+      <PropertyRef Name="Patient_ID" />
+    </Key>
+    <Property Name="Patient_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Patient_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Appointment_Date" Type="DateTime" Precision="0" />
+    <Property Name="Doctor_ID" Type="Int32" />
+    <NavigationProperty Name="tbl_Doctor" Relationship="HealthWebModel.FK_Doctor" FromRole="tbl_Appointment" ToRole="tbl_Doctor" />
+  </EntityType>
+  <EntityType Name="tbl_department">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Department_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_Doctor" Relationship="Self.FK__tbl_Docto__Depar__3A81B327" FromRole="tbl_department" ToRole="tbl_Doctor" />
+  </EntityType>
+  <EntityType Name="tbl_Doctor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Department_ID" Type="Int32" />
+    <Property Name="DoctorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_department" Relationship="Self.FK__tbl_Docto__Depar__3A81B327" FromRole="tbl_Doctor" ToRole="tbl_department" />
+    <NavigationProperty Name="tbl_Appointment" Relationship="HealthWebModel.FK_Doctor" FromRole="tbl_Doctor" ToRole="tbl_Appointment" />
+    <Property Name="ImgURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__tbl_Docto__Depar__3A81B327">
+    <End Role="tbl_department" Type="Self.tbl_department" Multiplicity="0..1" />
+    <End Role="tbl_Doctor" Type="Self.tbl_Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Doctor">
+        <PropertyRef Name="Department_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HealthWebEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_Appointment" EntityType="Self.tbl_Appointment" />
+    <EntitySet Name="tbl_department" EntityType="Self.tbl_department" />
+    <EntitySet Name="tbl_Doctor" EntityType="Self.tbl_Doctor" />
+    <AssociationSet Name="FK__tbl_Docto__Depar__3A81B327" Association="Self.FK__tbl_Docto__Depar__3A81B327">
+      <End Role="tbl_department" EntitySet="tbl_department" />
+      <End Role="tbl_Doctor" EntitySet="tbl_Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doctor" Association="HealthWebModel.FK_Doctor">
+      <End Role="tbl_Doctor" EntitySet="tbl_Doctor" />
+      <End Role="tbl_Appointment" EntitySet="tbl_Appointment" />
+    </AssociationSet>
+    <EntitySet Name="tbl_admin" EntityType="HealthWebModel.tbl_admin" />
+  </EntityContainer>
+  <Association Name="FK_Doctor">
+    <End Type="HealthWebModel.tbl_Doctor" Role="tbl_Doctor" Multiplicity="0..1" />
+    <End Type="HealthWebModel.tbl_Appointment" Role="tbl_Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Appointment">
+        <PropertyRef Name="Doctor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbl_admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

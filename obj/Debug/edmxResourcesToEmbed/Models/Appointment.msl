@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HealthWebModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="tbl_Appointment">
+      <EntityTypeMapping TypeName="HealthWebModel.tbl_Appointment">
+        <MappingFragment StoreEntitySet="tbl_Appointment">
+          <ScalarProperty Name="Patient_ID" ColumnName="Patient_ID" />
+          <ScalarProperty Name="Patient_Name" ColumnName="Patient_Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Doctor" ColumnName="Doctor" />
+          <ScalarProperty Name="Appointment_Date" ColumnName="Appointment_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_department">
+      <EntityTypeMapping TypeName="HealthWebModel.tbl_department">
+        <MappingFragment StoreEntitySet="tbl_department">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Department_Name" ColumnName="Department_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Doctor">
+      <EntityTypeMapping TypeName="HealthWebModel.tbl_Doctor">
+        <MappingFragment StoreEntitySet="tbl_Doctor">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Square with Text</title>
+    <style>
+        .square {
+            position: relative;
+            width: 200px; /* Adjust square size */
+            height: 200px; /* Adjust square size */
+            border: 2px solid black; /* Adjust border properties */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .top-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100%;
+            background-color: black; /* Adjust line color */
+            transform: translateX(-50%);
+        }
+
+        .text {
+            position: absolute;
+            top: -15px; /* Adjust distance of text from the top border */
+            background-color: white; /* Adjust background color */
+            padding: 0 10px; /* Adjust padding */
+            font-weight: bold; /* Adjust text style */
+        }
+    </style>
+</head>
+<body>
+    <div class="square">
+        <div class="top-line"></div>
+        <div class="text">Patient Details</div>
+    </div>
+</body>
+</html>

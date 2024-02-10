@@ -1,0 +1,276 @@
+﻿@model Heathweb.Models.tbl_Appointment
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+    @using (Html.BeginForm("BookAppointment", "Appointment", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <!-- Start Appointment -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2>We Are Always Ready to Help You. Book An Appointment</h2>
+                            <img src="@Url.Content("~/Template/img/section-img.png")" alt="#">
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <form class="form" action="#">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Patient_Name, htmlAttributes: new { @class = "control-label" })<span style="color:red">&nbsp;*</span>
+                                        @Html.EditorFor(model => model.Patient_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Patient_Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })<span style="color:red">&nbsp;*</span>
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label" })<span style="color:red">&nbsp;*</span>
+                                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        @Html.Label("Department", htmlAttributes: new { @class = "control-label" })<span style="color:red">&nbsp;*</span>
+                                        @Html.DropDownList("DepartmentList", ViewBag.DepartmentList as SelectList, "Select Department", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        @Html.Label("Doctor", htmlAttributes: new { @class = "control-label" })
+                                        <span style="color:red">&nbsp;*</span>
+                                        @Html.DropDownList("DoctorList", new SelectList(Enumerable.Empty<SelectListItem>()), "Select Doctor", new { @class = "form-control", id = "DoctorList" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Appointment_Date, htmlAttributes: new { @class = "control-label" })<span style="color:red">&nbsp;*</span>
+                                        @Html.EditorFor(model => model.Appointment_Date, new { htmlAttributes = new { @class = "form-control" , Type="Date"} })
+                                        @Html.ValidationMessageFor(model => model.Appointment_Date, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.Message, new { @class = "form-control", rows = 6, placeholder = "I need counseling about [specific disease or concern] ." })
+
+                                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn" value="BookAppointment">Book An Appointment</button>
+                                        @* @Html.ActionLink("Book An Appointment", "BookAppointment", "Appointment", new { @class = "btn" })*@
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="appointment-image">
+                            <img src="~/template/img/contact-img.png" alt="#">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Appointment -->
+        </div>
+    }
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content ">
+                <div class="modal-header alert-success"   role="alert">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Appointment Booked</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" >
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="Close" class="btn">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $(document).ready(function () {
+        $('#DepartmentList').change(function () {
+            var departmentId = $(this).val();
+
+            $.ajax({
+                url: '@Url.Action("GetDoctorsByDepartment", "Appointment")',
+                data: { departmentId: departmentId },
+                type: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    $('#DoctorList').html(''); // Clear existing options
+                    $.each(result, function (index, item) {
+                        $('#DoctorList').append($('<option></option>').val(item.Value).text(item.Text));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    // Handle errors gracefully
+                    console.error('Error fetching doctors:', error);
+                    alert('Failed to retrieve doctors. Please try again.');
+                }
+            });
+        });
+        
+        // Target the form using its element type
+        $('form').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Perform AJAX submission
+            $.ajax({
+                url: '@Url.Action("BookAppointment", "Appointment")',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function (response) {
+                    if (response.success) {
+                        $('#exampleModalLong .modal-body').html(`
+            <h6>Hi ${response.PatientName} ,</h6>
+            <p>Your appointment has been booked successfully on ${response.AppointmentDate} </p>
+            <p>you will receive an email for the same on ${response.PatientEmail}.</p>
+            <p>Thank you for choosing MedPlus.</p>
+        `);
+                        // Show the modal after successful save
+                        $('#exampleModalLong').modal('show');
+                    } else {
+                        // Handle validation errors or other issues
+                        console.error('Error:', response.errors);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle AJAX errors
+                    console.error('AJAX Error:', error);
+                }
+            });
+        });
+
+        // Add click event handler for the Close button in the modal
+        $('#Close').click(function () {
+            // Redirect to Home/ShowDashboard
+            window.location.href = '@Url.Action("ShowDashboard", "Home")';
+        });
+    });
+    </script>
+
+
+    @*<script>
+        $(document).ready(function () {
+            $('#DepartmentList').change(function () {
+                var departmentId = $(this).val();
+
+                $.ajax({
+                    url: '@Url.Action("GetDoctorsByDepartment", "Appointment")',
+                    data: { departmentId: departmentId },
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#DoctorList').html(''); // Clear existing options
+                        $.each(result, function (index, item) {
+                            $('#DoctorList').append($('<option></option>').val(item.Value).text(item.Text));
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle errors gracefully
+                        console.error('Error fetching doctors:', error);
+                        alert('Failed to retrieve doctors. Please try again.');
+                    }
+                });
+            });
+
+            // Target the form using its element type
+            $('form').submit(function (e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                // Perform AJAX submission
+                $.ajax({
+                    url: '@Url.Action("BookAppointment", "Appointment")',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            // Show the modal after successful save
+                            $('#exampleModalLong').modal('show');
+                        } else {
+                            // Handle validation errors or other issues
+                            console.error('Error:', response.errors);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle AJAX errors
+                        console.error('AJAX Error:', error);
+                    }
+                });
+            });
+        });
+
+        </script>*@
+
+
+    @*<script>
+            $(document).ready(function () {
+            $('#DepartmentList').change(function () {
+                var departmentId = $(this).val();
+
+                $.ajax({
+                    url: '@Url.Action("GetDoctorsByDepartment", "Appointment")',
+                    data: { departmentId: departmentId },
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#DoctorList').html(''); // Clear existing options
+                        $.each(result, function (index, item) {
+                            $('#DoctorList').append($('<option></option>').val(item.Value).text(item.Text));
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle errors gracefully
+                        console.error('Error fetching doctors:', error);
+                        alert('Failed to retrieve doctors. Please try again.');
+                    }
+                });
+            });
+        });
+
+
+            </script>*@
+
+</body>
+</html>
+
+

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Experience Doctors</title>
+    <!-- Include your CSS stylesheets or links to external stylesheets here -->
+    <link href="~/Templates2/css/style.css" rel="stylesheet" />
+    <link href="~/Templates2/css/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="breadcrumbs overlay" style="background-image: url('/Templates2/img/header-page.jpg'); " >
+            <div class="container">
+                <div class="bread-inner">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>our experience doctors</h2>
+                            <ul class="bread-list">
+                                <li><a href="index.html">home</a></li>
+                                <li><i class="icofont-simple-right"></i></li>
+                                <li class="active">doctors</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Team Start -->
+    <div class="container-xxl py-5">
+        <div class="row g-4">
+            @foreach (var doctor in Model)
+            {
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item position-relative rounded overflow-hidden">
+                        <div class="overflow-hidden">
+                            <!-- Assuming you have an 'ImageUrl' property in your Doctor model -->
+                            @if (!string.IsNullOrEmpty(doctor.ImgURL))
+                            {
+                                <img class="img-fluid" src="@Url.Content(doctor.ImgURL)" alt="Doctor Image">
+                            }
+                            else
+                            {
+                                <p>No image available</p>
+                            }
+                        </div>
+                        <div class="team-text bg-light text-center p-4">
+                            <h5>@doctor.DoctorName</h5>
+                            <p class="text-primary">Department</p>
+                            <div class="team-social text-center">
+                                <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+    <!-- Team End -->
+</body>
+</html>
+

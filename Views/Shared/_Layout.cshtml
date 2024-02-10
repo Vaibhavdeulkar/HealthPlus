@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- Title -->
+    <title>Healthplus </title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="~/Template/img/favicon.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Template/css/bootstrap.min.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="~/Template/css/nice-select.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="~/Template/css/font-awesome.min.css">
+    <!-- icofont CSS -->
+    <link rel="stylesheet" href="~/Template/css/icofont.css">
+    <!-- Slicknav -->
+    <link rel="stylesheet" href="~/Template/css/slicknav.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="~/Template/css/owl-carousel.css">
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="~/Template/css/datepicker.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/Template/css/animate.min.css">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="~/Template/css/magnific-popup.css">
+
+    <!-- Medipro CSS -->
+    <link rel="stylesheet" href="~/Template/css/normalize.css">
+    <link rel="stylesheet" href="~/Template/css/style.css">
+    <link rel="stylesheet" href="~/Template/style.css">
+
+
+    <link href="~/Templates2/css/style.css" rel="stylesheet" />
+   @* <link href="~/Templates2/css/bootstrap.min.css" rel="stylesheet" />*@
+    <style>
+        .gradient-text {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .green-gradient {
+            background: linear-gradient(to right, #4CAF50, #45a049); /* Green gradient */
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .blue-gradient {
+            background: linear-gradient(to right, #0074cc, #0061a8); /* Blue gradient */
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="">
+        <!-- Header Area -->
+        <header class="header">
+            <!-- Topbar -->
+            <div class="topbar">
+                <div class="container-fluid">
+                    <div class="row mx-lg-3 mx-2">
+                        <div class="col-lg-6 col-md-5 col-12">
+                            <!-- Contact -->
+                            <ul class="top-link">
+                                <!-- Top Contact -->
+                                <ul class="top-contact ">
+                                    <li><i class="fa fa-phone"></i>+987 654 3210</li>
+                                    <li><i class="fa fa-envelope"></i><a href="mailto:support@healthplus.com">support@healthplus.com</a></li>
+                                </ul>
+                                <!-- End Top Contact -->
+                            </ul>
+                            <!-- End Contact -->
+                        </div>
+                        <div class="col-lg-6 col-md-7 col-12">
+                            <ul class="top-contact">
+                                <li><a href="https://www.facebook.com/TheApolloHospitals/"><i class="fa fa-facebook-f" style="font-size: 20px;"></i></a></li>
+                                <li><a href="https://twitter.com/HospitalsApollo"><i class="fa fa-twitter" style="font-size: 20px;"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/apollo-hospitals"><i class="fa fa-linkedin" style="font-size: 24px;"></i></a></li>
+                                <li><a href="https://www.instagram.com/theapollohospitals/"><i class="fa fa-instagram" style="font-size: 20px;"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- End Topbar -->
+            <!-- Header Inner -->
+            <div class="header-inner">
+                <div class="container-fluid">
+                    <div class="inner">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-12">
+                                <!-- Start Logo -->
+                                <div class="logo">
+                                    <a href="@Url.Action("showdashboard", "Home")" style="display: flex; align-items: center;">
+                                        <img src="~/Template/img/favicon.png" alt="#" style="width: 40px; height: 40px; margin-right: 10px;">
+                                        <span class="gradient-text" style="font-size: 24px;">
+                                            <span class="green-gradient" style="font-weight: bold;">Health</span>
+                                            <span class="blue-gradient" style="font-weight: bold;">Plus</span>
+                                        </span>
+
+                                    </a>
+                                </div>
+                                <!-- End Logo -->
+                                <!-- Mobile Nav -->
+                                <div class="mobile-nav"></div>
+                                <!-- End Mobile Nav -->
+                            </div>
+                            <div class="col-lg-7 col-md-9 col-12">
+                                <!-- Main Menu -->
+                                <div class="main-menu">
+                                    <nav class="navigation">
+                                        <ul class="nav menu">
+                                            <li class="active">
+                                                @Html.ActionLink("Home", "ShowDashboard", "Home")
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink("Doctors", "Getdoctors", "Home")
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink("Services", "Services", "Home")
+                                            </li>
+                                            <li>
+                                                <a href="#">Blogs <i class="icofont-rounded-down"></i></a>
+                                                <ul class="dropdown">
+                                                    <li>@Html.ActionLink("Blog Details", "Blogs", "Home")</li>
+                                                </ul>
+                                            </li>
+                                            <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                                            <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!--/ End Main Menu -->
+                            </div>
+                            <div class="col-lg-2 col-12">
+                                <div class="get-quote">
+                                    @Html.ActionLink("Book Appointment", "Index", "Appointment", null, new { @class = "btn" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ End Header Inner -->
+        </header>
+        <!-- End Header Area -->
+
+        <div class="">
+            @RenderBody()
+            <hr style="background: linear-gradient(to right, #4CAF50, #45a049);  border: none;">
+
+        </div>
+
+        <!-- Footer Area -->
+        <footer id="footer" class="footer ">
+            <!-- Footer Top -->
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="single-footer">
+                                <h2>About Us</h2>
+                                <p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
+                                <!-- Social -->
+                                <ul class="social">
+                                    <li><a href="#"><i class="icofont-facebook"></i></a></li>
+                                    <li><a href="#"><i class="icofont-google-plus"></i></a></li>
+                                    <li><a href="#"><i class="icofont-twitter"></i></a></li>
+                                    <li><a href="#"><i class="icofont-vimeo"></i></a></li>
+                                    <li><a href="#"><i class="icofont-pinterest"></i></a></li>
+                                </ul>
+                                <!-- End Social -->
+                            </div>
+                        </div>
+                   
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="single-footer">
+                                <h2>Open Hours</h2>
+                                <p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>
+                                <ul class="time-sidual">
+                                    <li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
+                                    <li class="day">Saturday <span>9.00-18.30</span></li>
+                                    <li class="day">Monday - Thusday <span>9.00-15.00</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="single-footer">
+                                <h2>Newsletter</h2>
+                                <p>subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet, consectetur adipisicing elit,</p>
+                                <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                                    <input name="email" placeholder="Email Address" class="common-input" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Your email address'" required="" type="email">
+                                    <button class="button"><i class="icofont icofont-paper-plane"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ End Footer Top -->
+            <!-- Copyright -->
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-12">
+                            <div class="copyright-content">
+                                <p>© Copyright 2018  |  All Rights Reserved by <a href="https://www.wpthemesgrid.com" target="_blank">wpthemesgrid.com</a> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ End Copyright -->
+        </footer>
+        <!--/ End Footer Area -->
+
+
+        <script src="~/Templates2/js/main.js"></script>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

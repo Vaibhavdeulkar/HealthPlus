@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HealthWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Appointment">
+    <Key>
+      <PropertyRef Name="Patient_ID" />
+    </Key>
+    <Property Name="Patient_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Patient_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Department" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Message" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Doctor" Type="nvarchar" MaxLength="50" />
+    <Property Name="Appointment_Date" Type="date" />
+  </EntityType>
+  <EntityType Name="tbl_department">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Department_Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_Doctor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Department_ID" Type="int" />
+    <Property Name="DoctorName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__tbl_Docto__Depar__3A81B327">
+    <End Role="tbl_department" Type="Self.tbl_department" Multiplicity="0..1" />
+    <End Role="tbl_Doctor" Type="Self.tbl_Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tbl_Doctor">
+        <PropertyRef Name="Department_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HealthWebModelStoreContainer">
+    <EntitySet Name="tbl_Appointment" EntityType="Self.tbl_Appointment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_department" EntityType="Self.tbl_department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Doctor" EntityType="Self.tbl_Doctor" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tbl_Docto__Depar__3A81B327" Association="Self.FK__tbl_Docto__Depar__3A81B327">
+      <End Role="tbl_department" EntitySet="tbl_department" />
+      <End Role="tbl_Doctor" EntitySet="tbl_Doctor" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
